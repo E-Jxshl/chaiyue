@@ -158,11 +158,11 @@
   </div>
   <div class="spacer"></div>
   <div class="counter" id="counter" hidden>— / —</div>
-  <a class="btn" href="resume.pdf" target="_blank" rel="noopener" title="在新标签页打开原文件">
+  <a class="btn" href="resume.pdf?v=283146" target="_blank" rel="noopener" title="在新标签页打开原文件">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><path d="M15 3h6v6"/><path d="M10 14 21 3"/></svg>
     <span class="label">原文件</span>
   </a>
-  <a class="btn primary" href="resume.pdf" download="柴悦-个人简历.pdf" title="下载 PDF">
+  <a class="btn primary" href="resume.pdf?v=283146" download="柴悦-个人简历.pdf" title="下载 PDF">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
     <span class="label">下载</span>
   </a>
@@ -177,7 +177,7 @@
 <main>
   <div class="pages" id="pages"></div>
   <footer>
-    在线预览 · 共 <span id="totalPages">—</span> 页 &nbsp;|&nbsp; <a href="resume.pdf" download="柴悦-个人简历.pdf">下载原始 PDF</a>
+    在线预览 · 共 <span id="totalPages">—</span> 页 &nbsp;|&nbsp; <a href="resume.pdf?v=283146" download="柴悦-个人简历.pdf">下载原始 PDF</a>
   </footer>
 </main>
 
@@ -199,10 +199,12 @@
   var totalEl   = document.getElementById('totalPages');
   var spinner   = document.getElementById('spinner');
 
-  var PDF_URL = 'resume.pdf';
+  /* 版本号用于绕过浏览器与 CDN 旧缓存，换简历时同步改成新文件字节数 */
+  var PDF_VER = '283146';
+  var PDF_URL = 'resume.pdf?v=' + PDF_VER;
   var PDF_MIRRORS = [
-    'https://cdn.jsdelivr.net/gh/E-Jxshl/chaiyue@main/resume.pdf',
-    'resume.pdf'
+    'https://cdn.jsdelivr.net/gh/E-Jxshl/chaiyue@main/resume.pdf?v=' + PDF_VER,
+    PDF_URL
   ];
   var pdfDoc = null;
   var rendering = false;
